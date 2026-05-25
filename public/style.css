@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+/* ═══════════════════════════════════════════════════════
+   DataWare · Sales Intelligence Dashboard
+   style.css — Custom styles complementando Tailwind
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: #0d0d0f;
+  color: #e8e8f0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0d0d0f; }
+::-webkit-scrollbar-thumb { background: #2a2a32; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #00e5a0; }
+
+/* ── Select styling ── */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b6b7e'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px !important;
+}
+
+/* ═══════════════════════════════════════
+   KPI CARDS
+═══════════════════════════════════════ */
+.kpi-card {
+  background: #1a1a1f;
+  border: 1px solid #2a2a32;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.2s ease;
+  animation: fadeUp 0.5s ease both;
+}
+
+.kpi-card:hover {
+  border-color: #3a3a44;
+  transform: translateY(-2px);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--card-accent, #00e5a0);
+  opacity: 0.7;
+}
+
+.kpi-card.purple::before { --card-accent: #7c6bff; }
+.kpi-card.red::before    { --card-accent: #ff6b6b; }
+.kpi-card.orange::before { --card-accent: #ffb86b; }
+.kpi-card.blue::before   { --card-accent: #6bc5ff; }
+.kpi-card.green::before  { --card-accent: #00e5a0; }
+
+.kpi-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b6b7e;
+  font-family: 'Poppins', sans-serif;
+}
+
+.kpi-value {
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 800;
+  color: #e8e8f0;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-sub {
+  font-size: 11px;
+  color: #6b6b7e;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: rgba(255,255,255,0.05);
+  margin-bottom: 2px;
+}
+
+/* ═══════════════════════════════════════
+   CHART CARDS
+═══════════════════════════════════════ */
+.chart-card {
+  background: #1a1a1f;
+  border: 1px solid #2a2a32;
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.25s ease;
+  animation: fadeUp 0.5s ease both;
+}
+
+.chart-card:hover { border-color: #3a3a44; }
+
+.chart-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.chart-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #6b6b7e;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 2px;
+}
+
+.chart-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e8e8f0;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* Responsive chart heights */
+.chart-wrap canvas {
+  max-height: 260px;
+  width: 100% !important;
+}
+
+@media (max-width: 640px) {
+  .chart-wrap canvas {
+    max-height: 220px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   BADGES
+═══════════════════════════════════════ */
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-accent  { background: rgba(0,229,160,0.12); color: #00e5a0; border: 1px solid rgba(0,229,160,0.2); }
+.badge-purple  { background: rgba(124,107,255,0.12); color: #7c6bff; border: 1px solid rgba(124,107,255,0.2); }
+.badge-red     { background: rgba(255,107,107,0.12); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.2); }
+.badge-neutral { background: rgba(255,255,255,0.05); color: #6b6b7e; border: 1px solid #2a2a32; }
+
+/* ═══════════════════════════════════════
+   CATEGORY BARS (custom)
+═══════════════════════════════════════ */
+.cat-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cat-bar-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cat-bar-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+.cat-bar-val {
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #6b6b7e;
+}
+
+.cat-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #2a2a32;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.cat-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 0%;
+}
+
+/* ═══════════════════════════════════════
+   TABLE
+═══════════════════════════════════════ */
+#tableBody tr {
+  border-bottom: 1px solid rgba(42,42,50,0.6);
+  transition: background 0.15s ease;
+}
+
+#tableBody tr:hover { background: rgba(255,255,255,0.02); }
+
+#tableBody td {
+  padding: 10px 8px;
+  color: #c8c8d8;
+  vertical-align: middle;
+}
+
+#tableBody td:first-child { color: #6b6b7e; font-family: 'Poppins', sans-serif; font-size: 11px; }
+
+.cat-chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cat-chip.lanche   { background: rgba(0,229,160,0.1); color: #00e5a0; }
+.cat-chip.bebida   { background: rgba(124,107,255,0.1); color: #7c6bff; }
+.cat-chip.sobremesa { background: rgba(255,107,107,0.1); color: #ff6b6b; }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* stagger cards */
+.kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.kpi-card:nth-child(2) { animation-delay: 0.10s; }
+.kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.kpi-card:nth-child(4) { animation-delay: 0.20s; }
+.kpi-card:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.live-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #00e5a0;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════
+   TOOLTIP override (Chart.js)
+═══════════════════════════════════════ */
+.chartjs-tooltip-wrapper {
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE TWEAKS
+═══════════════════════════════════════ */
+@media (max-width: 480px) {
+  .kpi-card { padding: 12px; }
+  .kpi-value { font-size: 16px; }
+  .chart-card { padding: 14px; }
+  .chart-card-header { margin-bottom: 12px; }
+}
