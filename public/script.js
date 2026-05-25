@@ -1,20 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════════
-   DataWare · Sales Intelligence
-   script.js — ETL + MYSQL API VERSION
 
-   ARQUITETURA:
-   MySQL → Node.js API → Dashboard Front-End
-
-   ETL:
-   1. EXTRACT   → API/MySQL
-   2. TRANSFORM → Processamento analítico
-   3. LOAD      → Dashboard/UI
-═══════════════════════════════════════════════════════════════════ */
-
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CONFIGURAÇÕES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 const API_URL = '/api/vendas';
 
@@ -25,15 +9,7 @@ const CATEGORIAS = [
 ];
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ① EXTRACT — MYSQL/API
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/**
- * extractData()
- * Busca dados diretamente da API Node.js
- * conectada ao MySQL.
- */
 async function extractData() {
 
   console.log(
@@ -72,9 +48,7 @@ async function extractData() {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ② TRANSFORM — PROCESSAMENTO ANALÍTICO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 function transformData(registros) {
 
@@ -214,9 +188,7 @@ function transformData(registros) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ③ LOAD — DASHBOARD/UI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 let chartLine;
 let chartDoughnut;
@@ -270,10 +242,8 @@ function loadDashboard(mart) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   KPI CARDS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
+   
 function renderKPIs(kpis) {
 
   const container = document.getElementById('kpiCards');
@@ -339,9 +309,7 @@ function renderKPIs(kpis) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GRÁFICO LINHA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 function renderLineChart(vendasPorDia) {
 
@@ -385,9 +353,6 @@ function renderLineChart(vendasPorDia) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GRÁFICO ROSCA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 function renderDoughnutChart(porCategoria) {
 
@@ -427,9 +392,7 @@ function renderDoughnutChart(porCategoria) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GRÁFICO BARRAS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 function renderBarChart(top5) {
 
@@ -467,9 +430,7 @@ function renderBarChart(top5) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BARRAS CUSTOM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 function renderCategoryBars(
   porCategoria,
@@ -526,9 +487,6 @@ function renderCategoryBars(
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TABELA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 function renderTabela(reset = false) {
 
@@ -575,9 +533,7 @@ function renderTabela(reset = false) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HELPERS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 function formatCurrency(v) {
 
@@ -604,9 +560,7 @@ function formatarDataCurta(iso) {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FILTROS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 let rawData = [];
 
@@ -648,9 +602,7 @@ function aplicarFiltros() {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   INIT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 async function init() {
 
@@ -669,9 +621,7 @@ async function init() {
 }
 
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   EVENTOS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
 
 document.addEventListener(
   'DOMContentLoaded',
